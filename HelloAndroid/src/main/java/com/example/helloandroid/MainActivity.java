@@ -37,15 +37,7 @@ public class MainActivity extends Activity {
         Uri location = Uri.parse("geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
 
-        // Verify it resolves
-        PackageManager packageManager = getPackageManager();
-        List<ResolveInfo> activities = packageManager.queryIntentActivities(mapIntent, 0);
-        boolean isIntentSafe = activities.size() > 0;
-
-        // Start an activity if it's safe
-        if (isIntentSafe) {
-            startActivity(mapIntent);
-        }
+        startActivity(mapIntent);
 
     }
 

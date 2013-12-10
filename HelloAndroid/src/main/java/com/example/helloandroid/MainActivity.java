@@ -1,8 +1,6 @@
 package com.example.helloandroid;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
@@ -10,7 +8,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
-import java.util.List;
 
 public class MainActivity extends Activity {
 
@@ -34,7 +31,14 @@ public class MainActivity extends Activity {
         Log.d("Hello","Start Open Map");
 
         // Build the intent
-        Uri location = Uri.parse("geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California");
+        double latitude = 40.714728;
+        double longitude = -73.998672;
+        String label = "I'm Here!";
+        String uriBegin = "geo:" + latitude + "," + longitude;
+        String query = latitude + "," + longitude + "(" + label + ")";
+        String encodedQuery = Uri.encode(query);
+        String uriString = uriBegin + "?q=" + encodedQuery + "&z=16";
+        Uri location = Uri.parse(uriString);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
 
         startActivity(mapIntent);
